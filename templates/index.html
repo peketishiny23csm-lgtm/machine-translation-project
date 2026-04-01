@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>English → French Translator</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        .box {
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            margin: auto;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #667eea;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Dark mode */
+        .dark {
+            background: #121212 !important;
+            color: white !important;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            backdrop-filter: blur(5px);
+        }
+    </style>
+
+    <script>
+        function showLoading() {
+            document.getElementById("loading").style.display = "block";
+        }
+
+        function toggleMode() {
+            document.body.classList.toggle("dark");
+        }
+
+        function copyText() {
+            let text = document.getElementById("resultText").innerText;
+            navigator.clipboard.writeText(text);
+            alert("Copied!");
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Dark mode button -->
+    <button onclick="toggleMode()" style="margin-top:20px;">🌙 Toggle Mode</button>
+
+    <div class="container">
+        <div class="box">
+            <h2>🌍 English → French Translator</h2>
+
+            <form method="post">
+                <input type="text" name="text" placeholder="Try: My name is Shiny" required>
+                <br>
+                <button type="submit" onclick="showLoading()">Translate 🚀</button>
+            </form>
+
+            <div id="loading" class="loading">⏳ Translating...</div>
+
+            <div class="result">
+                <b id="resultText">{{ result }}</b>
+            </div>
+
+            <br>
+            <button onclick="copyText()">Copy 📋</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        🌍 Developed by <b>Shiny</b> | NLP Machine Translation Project 🚀
+    </footer>
+
+</body>
+</html>
